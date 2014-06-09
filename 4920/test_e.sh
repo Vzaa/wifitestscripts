@@ -55,16 +55,15 @@ run_test_24() {
     done
 }
 
-DUTA="192.168.1.1"
+DUTA="192.168.2.1"
 PORT=12345
-SINKIP="192.168.1.101"
-#MYIP="192.168.2.100"
-IPERFDUR=15
+SINKIP="192.168.2.87"
+MYIP="192.168.2.100"
+IPERFDUR=900
 IFNAME=wl1
 
 PWR_LEVELS="18 16 13 10"
-STA_MAC="5C:F9:38:9B:FE:5C" # mac air
-#STA_MAC="00:1C:BF:6F:A8:8C" # ibm thinkpad
+STA_MAC="5C:F9:38:9B:FE:5C" #mac air
 #STA_MAC="all"
 
 LOGDIR=$1
@@ -75,6 +74,10 @@ fi
 
 mkdir $LOGDIR
 
+########EXPECT STUFF
+cat ./dut.sh | nc -l 1234 &
+./nc.tcl $DUTA $MYIP $IFNAME
+##################
 
 #turn off 2.4 G
 exec_cmd $DUTA down24
