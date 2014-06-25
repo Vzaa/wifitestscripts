@@ -7,7 +7,7 @@
 * pdfunite
 * iperf
 
-##For Asus and Netgear
+##For Asus, Asus N66 & Netgear
 
 1. **Telnet Enable for Netgear:**
   * Make sure you can ping 192.168.1.1 then:
@@ -16,13 +16,13 @@
 ```
   * Try telnetting to 192.168.1.1
 
-2. **Prep for Asus & Netgear:**
+2. **Prep for Asus & Asus N66 & Netgear:**
 
   * Copy nc and dut.sh to a USB disk
   * On the DUT copy nc and dut.sh to /tmp
   * Asus: 
   ```bash
-  cd /tmp/mnt/sda1
+  cd /tmp/mnt/sd*1
   ```
   * Netgear: 
   ```bash
@@ -41,7 +41,7 @@
   * DUTA
   * SINKIP
   * STA_MAC
-  * MYIP (Not needed for asus_ngear)
+  * MYIP (Not needed for asus_ngear, n66)
 
 4. **Set 5G and 2G SSIDs to the same string**
 
