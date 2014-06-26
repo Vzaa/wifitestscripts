@@ -19,7 +19,8 @@ bw="20"
 bf="nobf"
 ANTS="1x1 2x2 3x3"
 
-fllist=""
+pdflist=""
+datlist=""
 
 for cur_pwr in $PWR_LEVELS; do 
     echo "
@@ -46,11 +47,14 @@ for cur_pwr in $PWR_LEVELS; do
             filename="$LOGDIR/${bf}_${band}_${bw}_${cur_pwr}_${ant}.log"
             put_dat $filename
             echo "\"${filename}.dat\" title '${band} ${ant}' with lines linestyle ${style}, \\" >> tmp.plt
+            datlist="$datlist ${filename}.dat"
             style=$((style + 1))
         done
     done
     gnuplot tmp.plt
     ps2pdf ${LOGDIR}/${cur_pwr}_n.eps ${LOGDIR}/${cur_pwr}_n.pdf
-    fllist="$fllist ${LOGDIR}/${cur_pwr}_n.pdf"
+    pdflist="$pdflist ${LOGDIR}/${cur_pwr}_n.pdf"
+    rm ${LOGDIR}/${cur_pwr}_n.eps 
 done
-pdfunite $fllist ${LOGDIR}/time_n.pdf
+pdfunite $pdflist ${LOGDIR}/time_n.pdf
+rm $pdflist $datlist tmp.plt

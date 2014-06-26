@@ -17,11 +17,13 @@ BANDS="2g 5g"
 bw="20"
 bf="nobf"
 ANTS="1x1 2x2 3x3"
+datlist=""
 
 for band in $BANDS; do
     for ant in $ANTS; do
         datfl="$LOGDIR/${bf}_${ant}_${band}_20_avg.dat"
-        rm $datfl
+        datlist="$datlist $datfl"
+        rm $datfl 2> /dev/null
         for cur_pwr in $PWR_LEVELS; do 
             filename="$LOGDIR/${bf}_${band}_${bw}_${cur_pwr}_${ant}.log"
             avg=`grep_avg  $filename`
@@ -33,4 +35,6 @@ done
 cd $LOGDIR
 gnuplot ../plot_e_n_avg.plt
 ps2pdf avg_n.eps
+rm avg_n.eps 
 cd -
+rm $datlist
