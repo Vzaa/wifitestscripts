@@ -60,6 +60,7 @@ run_test_dual_2() {
     ttype=$5
     vht=$6
     sinkipa=$7
+    sinkipb=$8
 
     band="2g"
 
@@ -89,6 +90,8 @@ run_test_trip_2() {
     ttype=$5
     vht=$6
     sinkipa=$7
+    sinkipb=$8
+    sinkipc=$9
 
     band="2g"
 
