@@ -26,39 +26,115 @@ exec_cmd() {
     done
 }
 
-run_test() {
-    sinkip=$1
+run_test_5() {
+    dut=$1
+    ch=$2
+    bw=$3
+    ant=$4
+    ttype=$5
+    vht=$6
+    sinkipa=$7
+
+    band="5g"
+
+    if [[ $vht == "ac" ]]; then
+        exec_cmd $dut ac_on
+    elif [[ $vht == "n" ]]; then
+        exec_cmd $dut ac_off
+    fi
+
+    exec_cmd $dut down24
+    exec_cmd $dut chbw $ch $bw
+    exec_cmd $dut $ant
+
     sleep 3
     test_ping $sinkip
-    iperf -c $sinkip -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/${sinkip}_${bf}_${band}_${bw}_${cur_pwr}_${ant}.log"
-    #iperf -c $sinkip -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/${sinkip}_${bf}_${band}_${bw}_${cur_pwr}_${ant}.log"
+    if [[ $ttype == "tcp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/${sinkipa}_${band}_${bw}_${ant}.log" 
+    elif [[ $ttype == "udp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/${sinkipa}_${band}_${bw}_${ant}.log" 
+    fi
     sleep 5
 }
 
-run_test_dual() {
-    sinkipa=$1
-    sinkipb=$2
+run_test_dual_5() {
+    dut=$1
+    ch=$2
+    bw=$3
+    ant=$4
+    ttype=$5
+    vht=$6
+    sinkipa=$7
+    sinkipb=$8
+
+    band="5g"
+
+    if [[ $vht == "ac" ]]; then
+        exec_cmd $dut ac_on
+    elif [[ $vht == "n" ]]; then
+        exec_cmd $dut ac_off
+    fi
+
+    exec_cmd $dut down24
+    exec_cmd $dut chbw $ch $bw
+    exec_cmd $dut $ant
     sleep 3
     test_ping $sinkipa
     test_ping $sinkipb
-    iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/dual_${sinkipa}_${bf}_${band}_${bw}_${cur_pwr}_${ant}.log" &
-    iperf -c $sinkipb -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/dual_${sinkipb}_${bf}_${band}_${bw}_${cur_pwr}_${ant}.log"
-    #iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/dual_${sinkipa}_${bf}_${band}_${bw}_${cur_pwr}_${ant}.log" &
-    #iperf -c $sinkipb -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/dual_${sinkipb}_${bf}_${band}_${bw}_${cur_pwr}_${ant}.log"
+    if [[ $ttype == "tcp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/dual_a_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/dual_b_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}.log" 
+    elif [[ $ttype == "udp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/dual_a_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/dual_b_${sinkipb}_${sinkipb}_${band}_${bw}_${ant}.log"
+    fi
     sleep 5
 }
 
-DUTA="192.168.1.101"
+run_test_trip_5() {
+    dut=$1
+    ch=$2
+    bw=$3
+    ant=$4
+    ttype=$5
+    vht=$6
+    sinkipa=$7
+    sinkipb=$8
+    sinkipc=$9
+
+    band="5g"
+
+    if [[ $vht == "ac" ]]; then
+        exec_cmd $dut ac_on
+    elif [[ $vht == "n" ]]; then
+        exec_cmd $dut ac_off
+    fi
+
+    exec_cmd $dut down24
+    exec_cmd $dut chbw $ch $bw
+    exec_cmd $dut $ant
+    sleep 3
+    test_ping $sinkipa
+    test_ping $sinkipb
+    test_ping $sinkipc
+    if [[ $ttype == "tcp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_a_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_b_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" &
+        iperf -c $sinkipc -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_c_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" 
+    elif [[ $ttype == "udp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_a_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_b_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" &
+        iperf -c $sinkipc -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_c_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" 
+    fi
+    sleep 5
+}
+
 PORT=12345
+DUTA="192.168.1.101"
 SINKA="192.168.1.22"
 SINKB="192.168.1.177"
-#MYIP="192.168.2.100"
+SINKC="192.168.1.178"
 IPERFDUR=10
-
-PWR_LEVELS="18"
-STA_MAC="5C:F9:38:9B:FE:5C" # mac air
-#STA_MAC="00:1C:BF:6F:A8:8C" # ibm thinkpad
-#STA_MAC="all"
 
 LOGDIR=$1
 if [ -x "$LOGDIR" ]; then
@@ -68,79 +144,12 @@ fi
 
 mkdir $LOGDIR
 
+run_test_5      $DUTA 48 80 3x3 tcp ac $SINKA
+run_test_5      $DUTA 48 80 3x3 tcp ac $SINKB
+run_test_5      $DUTA 48 80 3x3 tcp ac $SINKC
 
-#turn off 2.4 G
-exec_cmd $DUTA down24
+run_test_dual_5 $DUTA 48 80 3x3 tcp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 3x3 tcp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 3x3 tcp ac $SINKB $SINKC
 
-#BF 3x3 80 MHz Power Levels 10, 13, 16, 20 dBm 5 GHz
-bf="bf"; bw="80"; band="5g"; ant="3x3"
-exec_cmd $DUTA bf_on
-exec_cmd $DUTA chbw 48 80
-exec_cmd $DUTA 3x3
-run_test $SINKA
-run_test $SINKB
-run_test_dual $SINKA $SINKB
-
-bf="bf"; bw="40"; band="5g"; ant="3x3"
-exec_cmd $DUTA bf_on
-exec_cmd $DUTA chbw 48 40
-exec_cmd $DUTA 3x3
-run_test $SINKA
-run_test $SINKB
-run_test_dual $SINKA $SINKB
-
-bf="bf"; bw="20"; band="5g"; ant="3x3"
-exec_cmd $DUTA bf_on
-exec_cmd $DUTA chbw 48 20
-exec_cmd $DUTA 3x3
-run_test $SINKA
-run_test $SINKB
-run_test_dual $SINKA $SINKB
-
-bf="bf"; bw="80"; band="5g"; ant="2x2"
-exec_cmd $DUTA bf_on
-exec_cmd $DUTA chbw 48 80
-exec_cmd $DUTA 2x2
-run_test $SINKA
-run_test $SINKB
-run_test_dual $SINKA $SINKB
-
-bf="bf"; bw="40"; band="5g"; ant="2x2"
-exec_cmd $DUTA bf_on
-exec_cmd $DUTA chbw 48 40
-exec_cmd $DUTA 2x2
-run_test $SINKA
-run_test $SINKB
-run_test_dual $SINKA $SINKB
-
-bf="bf"; bw="20"; band="5g"; ant="2x2"
-exec_cmd $DUTA bf_on
-exec_cmd $DUTA chbw 48 20
-exec_cmd $DUTA 2x2
-run_test $SINKA
-run_test $SINKB
-run_test_dual $SINKA $SINKB
-
-bf="bf"; bw="80"; band="5g"; ant="1x1"
-exec_cmd $DUTA bf_on
-exec_cmd $DUTA chbw 48 80
-exec_cmd $DUTA 1x1
-run_test $SINKA
-run_test $SINKB
-run_test_dual $SINKA $SINKB
-
-bf="bf"; bw="40"; band="5g"; ant="1x1"
-exec_cmd $DUTA bf_on
-exec_cmd $DUTA chbw 48 40
-exec_cmd $DUTA 1x1
-run_test $SINKA
-run_test $SINKB
-run_test_dual $SINKA $SINKB
-
-bf="bf"; bw="20"; band="5g"; ant="1x1"
-exec_cmd $DUTA bf_on
-exec_cmd $DUTA chbw 48 20
-exec_cmd $DUTA 1x1
-run_test $SINKA
-run_test $SINKB
-run_test_dual $SINKA $SINKB
+run_test_trip_5 $DUTA 48 80 3x3 tcp ac $SINKA $SINKB $SINKC
