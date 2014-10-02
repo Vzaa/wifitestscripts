@@ -12,17 +12,15 @@ def gen_2():
         for bw in bws:
             for vht in vhts:
                 for ttype in ttypes:
-                    print """
+                    print """\
 run_test_2      $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA
 run_test_2      $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKB
 run_test_2      $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKC
-
 run_test_dual_2 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKB
 run_test_dual_2 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKC
 run_test_dual_2 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKB $SINKC
-
 run_test_trip_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKB $SINKC
-""".format(ch=ch, bw=bw, ant=ant, ttype=ttype, vht=vht)
+""".format(ch=ch, bw=bw, ant=ant, ttype=ttype, vht=vht),
 
 
 def gen_5():
@@ -36,22 +34,20 @@ def gen_5():
         for bw in bws:
             for vht in vhts:
                 for ttype in ttypes:
-                    print """
+                    print """\
 run_test_5      $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA
 run_test_5      $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKB
 run_test_5      $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKC
-
 run_test_dual_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKB
 run_test_dual_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKC
 run_test_dual_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKB $SINKC
-
 run_test_trip_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKB $SINKC
-""".format(ch=ch, bw=bw, ant=ant, ttype=ttype, vht=vht)
+""".format(ch=ch, bw=bw, ant=ant, ttype=ttype, vht=vht),
 
 
 def main():
-    gen_2()
     gen_5()
+    gen_2()
 
 
 if __name__ == '__main__':
