@@ -26,6 +26,93 @@ exec_cmd() {
     done
 }
 
+run_test_2() {
+    dut=$1
+    ch=$2
+    bw=$3
+    ant=$4
+    ttype=$5
+    vht=$6
+    sinkipa=$7
+
+    band="2g"
+
+    exec_cmd $dut down
+    exec_cmd $dut up24
+    exec_cmd $dut 24chbw $ch $bw
+    exec_cmd $dut 24_${ant}
+
+    sleep 3
+    test_ping $sinkip
+    if [[ $ttype == "tcp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/${sinkipa}_${band}_${bw}_${ant}_${ttype}_${vht}.log" 
+    elif [[ $ttype == "udp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/${sinkipa}_${band}_${bw}_${ant}_${ttype}_${vht}.log" 
+    fi
+    sleep 5
+}
+
+run_test_dual_2() {
+    dut=$1
+    ch=$2
+    bw=$3
+    ant=$4
+    ttype=$5
+    vht=$6
+    sinkipa=$7
+
+    band="2g"
+
+    exec_cmd $dut down
+    exec_cmd $dut up24
+    exec_cmd $dut 24chbw $ch $bw
+    exec_cmd $dut 24_${ant}
+
+    sleep 3
+    test_ping $sinkipa
+    test_ping $sinkipb
+    if [[ $ttype == "tcp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/dual_a_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/dual_b_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}_${ttype}_${vht}.log" 
+    elif [[ $ttype == "udp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/dual_a_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/dual_b_${sinkipb}_${sinkipb}_${band}_${bw}_${ant}_${ttype}_${vht}.log"
+    fi
+    sleep 5
+}
+
+run_test_trip_2() {
+    dut=$1
+    ch=$2
+    bw=$3
+    ant=$4
+    ttype=$5
+    vht=$6
+    sinkipa=$7
+
+    band="2g"
+
+    exec_cmd $dut down
+    exec_cmd $dut up24
+    exec_cmd $dut 24chbw $ch $bw
+    exec_cmd $dut 24_${ant}
+
+    sleep 3
+    test_ping $sinkipa
+    test_ping $sinkipb
+    test_ping $sinkipc
+    if [[ $ttype == "tcp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_a_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_b_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipc -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_c_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" 
+    elif [[ $ttype == "udp" ]]; then
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_a_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_b_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipc -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_c_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" 
+    fi
+    sleep 5
+}
+
 run_test_5() {
     dut=$1
     ch=$2
@@ -44,15 +131,16 @@ run_test_5() {
     fi
 
     exec_cmd $dut down24
+    exec_cmd $dut up
     exec_cmd $dut chbw $ch $bw
     exec_cmd $dut $ant
 
     sleep 3
     test_ping $sinkip
     if [[ $ttype == "tcp" ]]; then
-        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/${sinkipa}_${band}_${bw}_${ant}.log" 
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/${sinkipa}_${band}_${bw}_${ant}_${ttype}_${vht}.log" 
     elif [[ $ttype == "udp" ]]; then
-        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/${sinkipa}_${band}_${bw}_${ant}.log" 
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/${sinkipa}_${band}_${bw}_${ant}_${ttype}_${vht}.log" 
     fi
     sleep 5
 }
@@ -76,17 +164,18 @@ run_test_dual_5() {
     fi
 
     exec_cmd $dut down24
+    exec_cmd $dut up
     exec_cmd $dut chbw $ch $bw
     exec_cmd $dut $ant
     sleep 3
     test_ping $sinkipa
     test_ping $sinkipb
     if [[ $ttype == "tcp" ]]; then
-        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/dual_a_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}.log" &
-        iperf -c $sinkipb -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/dual_b_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}.log" 
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/dual_a_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/dual_b_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}_${ttype}_${vht}.log" 
     elif [[ $ttype == "udp" ]]; then
-        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/dual_a_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}.log" &
-        iperf -c $sinkipb -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/dual_b_${sinkipb}_${sinkipb}_${band}_${bw}_${ant}.log"
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/dual_a_${sinkipa}_${sinkipb}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/dual_b_${sinkipb}_${sinkipb}_${band}_${bw}_${ant}_${ttype}_${vht}.log"
     fi
     sleep 5
 }
@@ -111,6 +200,7 @@ run_test_trip_5() {
     fi
 
     exec_cmd $dut down24
+    exec_cmd $dut up
     exec_cmd $dut chbw $ch $bw
     exec_cmd $dut $ant
     sleep 3
@@ -118,13 +208,13 @@ run_test_trip_5() {
     test_ping $sinkipb
     test_ping $sinkipc
     if [[ $ttype == "tcp" ]]; then
-        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_a_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" &
-        iperf -c $sinkipb -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_b_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" &
-        iperf -c $sinkipc -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_c_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" 
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_a_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_b_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipc -i1 -t${IPERFDUR} -P 5 > "$LOGDIR/trip_c_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" 
     elif [[ $ttype == "udp" ]]; then
-        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_a_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" &
-        iperf -c $sinkipb -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_b_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" &
-        iperf -c $sinkipc -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_c_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}.log" 
+        iperf -c $sinkipa -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_a_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipb -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_b_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" &
+        iperf -c $sinkipc -i1 -t${IPERFDUR} -u -b 800m > "$LOGDIR/trip_c_${sinkipa}_${sinkipb}_${sinkipc}_${band}_${bw}_${ant}_${ttype}_${vht}.log" 
     fi
     sleep 5
 }
