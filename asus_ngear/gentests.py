@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 
 def gen_2():
     ch = '1'
@@ -45,7 +46,13 @@ run_test_dual_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKB $SINKC
 run_test_trip_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKB $SINKC
 """.format(ch=ch,bw=bw,ant=ant,ttype=ttype,vht=vht)
 
+def main():
+    gen_2()
+    gen_5()
 
-gen_2()
-gen_5()
+if __name__ == '__main__':
+    main()
+
+
+
 
