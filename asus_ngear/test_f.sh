@@ -238,12 +238,311 @@ fi
 
 mkdir $LOGDIR
 
+run_test_5      $DUTA 48 20 1x1 tcp ac $SINKA
+run_test_5      $DUTA 48 20 1x1 tcp ac $SINKB
+run_test_5      $DUTA 48 20 1x1 tcp ac $SINKC
+run_test_dual_5 $DUTA 48 20 1x1 tcp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 1x1 tcp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 1x1 tcp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 1x1 tcp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 1x1 udp ac $SINKA
+run_test_5      $DUTA 48 20 1x1 udp ac $SINKB
+run_test_5      $DUTA 48 20 1x1 udp ac $SINKC
+run_test_dual_5 $DUTA 48 20 1x1 udp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 1x1 udp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 1x1 udp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 1x1 udp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 1x1 tcp n $SINKA
+run_test_5      $DUTA 48 20 1x1 tcp n $SINKB
+run_test_5      $DUTA 48 20 1x1 tcp n $SINKC
+run_test_dual_5 $DUTA 48 20 1x1 tcp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 1x1 tcp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 1x1 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 1x1 tcp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 1x1 udp n $SINKA
+run_test_5      $DUTA 48 20 1x1 udp n $SINKB
+run_test_5      $DUTA 48 20 1x1 udp n $SINKC
+run_test_dual_5 $DUTA 48 20 1x1 udp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 1x1 udp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 1x1 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 1x1 udp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 1x1 tcp ac $SINKA
+run_test_5      $DUTA 48 40 1x1 tcp ac $SINKB
+run_test_5      $DUTA 48 40 1x1 tcp ac $SINKC
+run_test_dual_5 $DUTA 48 40 1x1 tcp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 1x1 tcp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 1x1 tcp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 1x1 tcp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 1x1 udp ac $SINKA
+run_test_5      $DUTA 48 40 1x1 udp ac $SINKB
+run_test_5      $DUTA 48 40 1x1 udp ac $SINKC
+run_test_dual_5 $DUTA 48 40 1x1 udp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 1x1 udp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 1x1 udp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 1x1 udp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 1x1 tcp n $SINKA
+run_test_5      $DUTA 48 40 1x1 tcp n $SINKB
+run_test_5      $DUTA 48 40 1x1 tcp n $SINKC
+run_test_dual_5 $DUTA 48 40 1x1 tcp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 1x1 tcp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 1x1 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 1x1 tcp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 1x1 udp n $SINKA
+run_test_5      $DUTA 48 40 1x1 udp n $SINKB
+run_test_5      $DUTA 48 40 1x1 udp n $SINKC
+run_test_dual_5 $DUTA 48 40 1x1 udp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 1x1 udp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 1x1 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 1x1 udp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 1x1 tcp ac $SINKA
+run_test_5      $DUTA 48 80 1x1 tcp ac $SINKB
+run_test_5      $DUTA 48 80 1x1 tcp ac $SINKC
+run_test_dual_5 $DUTA 48 80 1x1 tcp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 1x1 tcp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 1x1 tcp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 1x1 tcp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 1x1 udp ac $SINKA
+run_test_5      $DUTA 48 80 1x1 udp ac $SINKB
+run_test_5      $DUTA 48 80 1x1 udp ac $SINKC
+run_test_dual_5 $DUTA 48 80 1x1 udp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 1x1 udp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 1x1 udp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 1x1 udp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 1x1 tcp n $SINKA
+run_test_5      $DUTA 48 80 1x1 tcp n $SINKB
+run_test_5      $DUTA 48 80 1x1 tcp n $SINKC
+run_test_dual_5 $DUTA 48 80 1x1 tcp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 1x1 tcp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 1x1 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 1x1 tcp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 1x1 udp n $SINKA
+run_test_5      $DUTA 48 80 1x1 udp n $SINKB
+run_test_5      $DUTA 48 80 1x1 udp n $SINKC
+run_test_dual_5 $DUTA 48 80 1x1 udp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 1x1 udp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 1x1 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 1x1 udp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 2x2 tcp ac $SINKA
+run_test_5      $DUTA 48 20 2x2 tcp ac $SINKB
+run_test_5      $DUTA 48 20 2x2 tcp ac $SINKC
+run_test_dual_5 $DUTA 48 20 2x2 tcp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 2x2 tcp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 2x2 tcp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 2x2 tcp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 2x2 udp ac $SINKA
+run_test_5      $DUTA 48 20 2x2 udp ac $SINKB
+run_test_5      $DUTA 48 20 2x2 udp ac $SINKC
+run_test_dual_5 $DUTA 48 20 2x2 udp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 2x2 udp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 2x2 udp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 2x2 udp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 2x2 tcp n $SINKA
+run_test_5      $DUTA 48 20 2x2 tcp n $SINKB
+run_test_5      $DUTA 48 20 2x2 tcp n $SINKC
+run_test_dual_5 $DUTA 48 20 2x2 tcp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 2x2 tcp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 2x2 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 2x2 tcp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 2x2 udp n $SINKA
+run_test_5      $DUTA 48 20 2x2 udp n $SINKB
+run_test_5      $DUTA 48 20 2x2 udp n $SINKC
+run_test_dual_5 $DUTA 48 20 2x2 udp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 2x2 udp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 2x2 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 2x2 udp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 2x2 tcp ac $SINKA
+run_test_5      $DUTA 48 40 2x2 tcp ac $SINKB
+run_test_5      $DUTA 48 40 2x2 tcp ac $SINKC
+run_test_dual_5 $DUTA 48 40 2x2 tcp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 2x2 tcp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 2x2 tcp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 2x2 tcp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 2x2 udp ac $SINKA
+run_test_5      $DUTA 48 40 2x2 udp ac $SINKB
+run_test_5      $DUTA 48 40 2x2 udp ac $SINKC
+run_test_dual_5 $DUTA 48 40 2x2 udp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 2x2 udp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 2x2 udp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 2x2 udp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 2x2 tcp n $SINKA
+run_test_5      $DUTA 48 40 2x2 tcp n $SINKB
+run_test_5      $DUTA 48 40 2x2 tcp n $SINKC
+run_test_dual_5 $DUTA 48 40 2x2 tcp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 2x2 tcp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 2x2 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 2x2 tcp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 2x2 udp n $SINKA
+run_test_5      $DUTA 48 40 2x2 udp n $SINKB
+run_test_5      $DUTA 48 40 2x2 udp n $SINKC
+run_test_dual_5 $DUTA 48 40 2x2 udp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 2x2 udp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 2x2 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 2x2 udp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 2x2 tcp ac $SINKA
+run_test_5      $DUTA 48 80 2x2 tcp ac $SINKB
+run_test_5      $DUTA 48 80 2x2 tcp ac $SINKC
+run_test_dual_5 $DUTA 48 80 2x2 tcp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 2x2 tcp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 2x2 tcp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 2x2 tcp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 2x2 udp ac $SINKA
+run_test_5      $DUTA 48 80 2x2 udp ac $SINKB
+run_test_5      $DUTA 48 80 2x2 udp ac $SINKC
+run_test_dual_5 $DUTA 48 80 2x2 udp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 2x2 udp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 2x2 udp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 2x2 udp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 2x2 tcp n $SINKA
+run_test_5      $DUTA 48 80 2x2 tcp n $SINKB
+run_test_5      $DUTA 48 80 2x2 tcp n $SINKC
+run_test_dual_5 $DUTA 48 80 2x2 tcp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 2x2 tcp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 2x2 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 2x2 tcp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 2x2 udp n $SINKA
+run_test_5      $DUTA 48 80 2x2 udp n $SINKB
+run_test_5      $DUTA 48 80 2x2 udp n $SINKC
+run_test_dual_5 $DUTA 48 80 2x2 udp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 2x2 udp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 2x2 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 2x2 udp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 3x3 tcp ac $SINKA
+run_test_5      $DUTA 48 20 3x3 tcp ac $SINKB
+run_test_5      $DUTA 48 20 3x3 tcp ac $SINKC
+run_test_dual_5 $DUTA 48 20 3x3 tcp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 3x3 tcp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 3x3 tcp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 3x3 tcp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 3x3 udp ac $SINKA
+run_test_5      $DUTA 48 20 3x3 udp ac $SINKB
+run_test_5      $DUTA 48 20 3x3 udp ac $SINKC
+run_test_dual_5 $DUTA 48 20 3x3 udp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 3x3 udp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 3x3 udp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 3x3 udp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 3x3 tcp n $SINKA
+run_test_5      $DUTA 48 20 3x3 tcp n $SINKB
+run_test_5      $DUTA 48 20 3x3 tcp n $SINKC
+run_test_dual_5 $DUTA 48 20 3x3 tcp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 3x3 tcp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 3x3 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 3x3 tcp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 20 3x3 udp n $SINKA
+run_test_5      $DUTA 48 20 3x3 udp n $SINKB
+run_test_5      $DUTA 48 20 3x3 udp n $SINKC
+run_test_dual_5 $DUTA 48 20 3x3 udp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 20 3x3 udp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 20 3x3 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 20 3x3 udp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 3x3 tcp ac $SINKA
+run_test_5      $DUTA 48 40 3x3 tcp ac $SINKB
+run_test_5      $DUTA 48 40 3x3 tcp ac $SINKC
+run_test_dual_5 $DUTA 48 40 3x3 tcp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 3x3 tcp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 3x3 tcp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 3x3 tcp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 3x3 udp ac $SINKA
+run_test_5      $DUTA 48 40 3x3 udp ac $SINKB
+run_test_5      $DUTA 48 40 3x3 udp ac $SINKC
+run_test_dual_5 $DUTA 48 40 3x3 udp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 3x3 udp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 3x3 udp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 3x3 udp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 3x3 tcp n $SINKA
+run_test_5      $DUTA 48 40 3x3 tcp n $SINKB
+run_test_5      $DUTA 48 40 3x3 tcp n $SINKC
+run_test_dual_5 $DUTA 48 40 3x3 tcp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 3x3 tcp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 3x3 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 3x3 tcp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 40 3x3 udp n $SINKA
+run_test_5      $DUTA 48 40 3x3 udp n $SINKB
+run_test_5      $DUTA 48 40 3x3 udp n $SINKC
+run_test_dual_5 $DUTA 48 40 3x3 udp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 40 3x3 udp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 40 3x3 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 40 3x3 udp n $SINKA $SINKB $SINKC
 run_test_5      $DUTA 48 80 3x3 tcp ac $SINKA
 run_test_5      $DUTA 48 80 3x3 tcp ac $SINKB
 run_test_5      $DUTA 48 80 3x3 tcp ac $SINKC
-
 run_test_dual_5 $DUTA 48 80 3x3 tcp ac $SINKA $SINKB
 run_test_dual_5 $DUTA 48 80 3x3 tcp ac $SINKA $SINKC
 run_test_dual_5 $DUTA 48 80 3x3 tcp ac $SINKB $SINKC
-
 run_test_trip_5 $DUTA 48 80 3x3 tcp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 3x3 udp ac $SINKA
+run_test_5      $DUTA 48 80 3x3 udp ac $SINKB
+run_test_5      $DUTA 48 80 3x3 udp ac $SINKC
+run_test_dual_5 $DUTA 48 80 3x3 udp ac $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 3x3 udp ac $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 3x3 udp ac $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 3x3 udp ac $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 3x3 tcp n $SINKA
+run_test_5      $DUTA 48 80 3x3 tcp n $SINKB
+run_test_5      $DUTA 48 80 3x3 tcp n $SINKC
+run_test_dual_5 $DUTA 48 80 3x3 tcp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 3x3 tcp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 3x3 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 3x3 tcp n $SINKA $SINKB $SINKC
+run_test_5      $DUTA 48 80 3x3 udp n $SINKA
+run_test_5      $DUTA 48 80 3x3 udp n $SINKB
+run_test_5      $DUTA 48 80 3x3 udp n $SINKC
+run_test_dual_5 $DUTA 48 80 3x3 udp n $SINKA $SINKB
+run_test_dual_5 $DUTA 48 80 3x3 udp n $SINKA $SINKC
+run_test_dual_5 $DUTA 48 80 3x3 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 48 80 3x3 udp n $SINKA $SINKB $SINKC
+run_test_2      $DUTA 1 20 1x1 tcp n $SINKA
+run_test_2      $DUTA 1 20 1x1 tcp n $SINKB
+run_test_2      $DUTA 1 20 1x1 tcp n $SINKC
+run_test_dual_2 $DUTA 1 20 1x1 tcp n $SINKA $SINKB
+run_test_dual_2 $DUTA 1 20 1x1 tcp n $SINKA $SINKC
+run_test_dual_2 $DUTA 1 20 1x1 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 1 20 1x1 tcp n $SINKA $SINKB $SINKC
+run_test_2      $DUTA 1 20 1x1 udp n $SINKA
+run_test_2      $DUTA 1 20 1x1 udp n $SINKB
+run_test_2      $DUTA 1 20 1x1 udp n $SINKC
+run_test_dual_2 $DUTA 1 20 1x1 udp n $SINKA $SINKB
+run_test_dual_2 $DUTA 1 20 1x1 udp n $SINKA $SINKC
+run_test_dual_2 $DUTA 1 20 1x1 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 1 20 1x1 udp n $SINKA $SINKB $SINKC
+run_test_2      $DUTA 1 40 1x1 tcp n $SINKA
+run_test_2      $DUTA 1 40 1x1 tcp n $SINKB
+run_test_2      $DUTA 1 40 1x1 tcp n $SINKC
+run_test_dual_2 $DUTA 1 40 1x1 tcp n $SINKA $SINKB
+run_test_dual_2 $DUTA 1 40 1x1 tcp n $SINKA $SINKC
+run_test_dual_2 $DUTA 1 40 1x1 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 1 40 1x1 tcp n $SINKA $SINKB $SINKC
+run_test_2      $DUTA 1 40 1x1 udp n $SINKA
+run_test_2      $DUTA 1 40 1x1 udp n $SINKB
+run_test_2      $DUTA 1 40 1x1 udp n $SINKC
+run_test_dual_2 $DUTA 1 40 1x1 udp n $SINKA $SINKB
+run_test_dual_2 $DUTA 1 40 1x1 udp n $SINKA $SINKC
+run_test_dual_2 $DUTA 1 40 1x1 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 1 40 1x1 udp n $SINKA $SINKB $SINKC
+run_test_2      $DUTA 1 20 2x2 tcp n $SINKA
+run_test_2      $DUTA 1 20 2x2 tcp n $SINKB
+run_test_2      $DUTA 1 20 2x2 tcp n $SINKC
+run_test_dual_2 $DUTA 1 20 2x2 tcp n $SINKA $SINKB
+run_test_dual_2 $DUTA 1 20 2x2 tcp n $SINKA $SINKC
+run_test_dual_2 $DUTA 1 20 2x2 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 1 20 2x2 tcp n $SINKA $SINKB $SINKC
+run_test_2      $DUTA 1 20 2x2 udp n $SINKA
+run_test_2      $DUTA 1 20 2x2 udp n $SINKB
+run_test_2      $DUTA 1 20 2x2 udp n $SINKC
+run_test_dual_2 $DUTA 1 20 2x2 udp n $SINKA $SINKB
+run_test_dual_2 $DUTA 1 20 2x2 udp n $SINKA $SINKC
+run_test_dual_2 $DUTA 1 20 2x2 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 1 20 2x2 udp n $SINKA $SINKB $SINKC
+run_test_2      $DUTA 1 40 2x2 tcp n $SINKA
+run_test_2      $DUTA 1 40 2x2 tcp n $SINKB
+run_test_2      $DUTA 1 40 2x2 tcp n $SINKC
+run_test_dual_2 $DUTA 1 40 2x2 tcp n $SINKA $SINKB
+run_test_dual_2 $DUTA 1 40 2x2 tcp n $SINKA $SINKC
+run_test_dual_2 $DUTA 1 40 2x2 tcp n $SINKB $SINKC
+run_test_trip_5 $DUTA 1 40 2x2 tcp n $SINKA $SINKB $SINKC
+run_test_2      $DUTA 1 40 2x2 udp n $SINKA
+run_test_2      $DUTA 1 40 2x2 udp n $SINKB
+run_test_2      $DUTA 1 40 2x2 udp n $SINKC
+run_test_dual_2 $DUTA 1 40 2x2 udp n $SINKA $SINKB
+run_test_dual_2 $DUTA 1 40 2x2 udp n $SINKA $SINKC
+run_test_dual_2 $DUTA 1 40 2x2 udp n $SINKB $SINKC
+run_test_trip_5 $DUTA 1 40 2x2 udp n $SINKA $SINKB $SINKC
