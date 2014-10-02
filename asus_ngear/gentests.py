@@ -1,5 +1,6 @@
 #!/usr/bin/env python2
 
+
 def gen_2():
     ch = '1'
     ants = ['1x1', '2x2']
@@ -21,7 +22,8 @@ run_test_dual_2 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKC
 run_test_dual_2 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKB $SINKC
 
 run_test_trip_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKB $SINKC
-""".format(ch=ch,bw=bw,ant=ant,ttype=ttype,vht=vht)
+""".format(ch=ch, bw=bw, ant=ant, ttype=ttype, vht=vht)
+
 
 def gen_5():
     ch = '48'
@@ -44,15 +46,13 @@ run_test_dual_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKC
 run_test_dual_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKB $SINKC
 
 run_test_trip_5 $DUTA {ch} {bw} {ant} {ttype} {vht} $SINKA $SINKB $SINKC
-""".format(ch=ch,bw=bw,ant=ant,ttype=ttype,vht=vht)
+""".format(ch=ch, bw=bw, ant=ant, ttype=ttype, vht=vht)
+
 
 def main():
     gen_2()
     gen_5()
 
+
 if __name__ == '__main__':
     main()
-
-
-
-
